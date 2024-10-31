@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<MovieDbContext>(option => { option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection")); });
 builder.Services.AddScoped<IRepository<MovieDetail>,Repository<MovieDetail>>();
+builder.Services.AddScoped<IRepository<Actor>, Repository<Actor>>();
 builder.Services.AddHttpClient<IMovieService,MovieService>();
 builder.Services.AddScoped<IMovieService,MovieService>();
 builder.Services.AddAutoMapper(typeof(MappingConfiguration));

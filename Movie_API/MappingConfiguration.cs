@@ -8,7 +8,8 @@ namespace Movie_API
         public MappingConfiguration()
         {
             CreateMap<AllModels, MovieDetail>();
-           
+            CreateMap<AllModels, Actor>();
+
         }
     }
 }

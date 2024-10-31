@@ -2,6 +2,7 @@
 {
     public interface IMovieService
     {
-        Task<T> GetAllAsync<T>(); 
+        Task<T> GetAllAsync<T>(string title); 
+        Task<T> SearchMovieAsync<T>(string title);
     }
 }

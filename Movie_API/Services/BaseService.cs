@@ -21,7 +21,7 @@ namespace Movie_API.Services
             {
                 var client = httpClient.CreateClient("MovieAPI");
                 HttpRequestMessage message = new HttpRequestMessage();
-                message.Headers.Add("Accept", "application/json");
+                //message.Headers.Add("Accept", "application/json");
                 message.RequestUri = new Uri(apiRequest.Url);
                 //if (apiRequest.Data != null)
                 //{
