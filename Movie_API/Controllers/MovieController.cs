@@ -30,19 +30,19 @@ namespace Movie_API.Controllers
         public async Task<ActionResult<AllModels>> GetMovieDetails([FromQuery] string title)
         {
             //List<AllModels> list = new();
-            var drake = await _movieService.GetAllAsync<AllModels>(title);
-            if (await _movieDetail.GetAsync(u => u.Title.ToLower() == drake.Title.ToLower()) == null)
+            var apiMovie = await _movieService.GetAllAsync<AllModels>(title);
+            if (await _movieDetail.GetAsync(u => u.Title.ToLower() == apiMovie.Title.ToLower()) == null)
             {
-                MovieDetail thor = _mapper.Map<MovieDetail>(drake);
-                await _movieDetail.CreateAsync(thor);
+                MovieDetail movie = _mapper.Map<MovieDetail>(apiMovie);
+                await _movieDetail.CreateAsync(movie);
             }
-            if (await _actor.GetAsync(u => u.Actors.ToLower() == drake.Actors.ToLower()) == null)
+            if (await _actor.GetAsync(u => u.Actors.ToLower() == apiMovie.Actors.ToLower()) == null)
             {
-                Actor thor = _mapper.Map<Actor>(drake);
-                await _actor.CreateAsync(thor);
+                Actor movie = _mapper.Map<Actor>(apiMovie);
+                await _actor.CreateAsync(movie);
             }
 
-            return Ok(drake);
+            return Ok(apiMovie);
         }
 
         [HttpGet("search")]
