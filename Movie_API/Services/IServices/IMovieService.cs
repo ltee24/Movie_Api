@@ -4,5 +4,6 @@
     {
         Task<T> GetAllAsync<T>(string title); 
         Task<T> SearchMovieAsync<T>(string title);
+        Task<T> SearchMovieDetailAsync<T>(string title);
     }
 }

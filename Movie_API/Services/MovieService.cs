@@ -34,5 +34,14 @@ namespace Movie_API.Services
 
 
         }
+
+        public async Task<T> SearchMovieDetailAsync<T>(string title)
+        {
+            return await SendAsync<T>(new ApiRequest()
+            {
+                ApiType = ApiType.GET,
+                Url = $"{movieUrl}s={title}",
+            });
+        }
     }
 }

@@ -45,7 +45,7 @@ namespace Movie_API.Controllers
             return Ok(apiMovie);
         }
 
-        [HttpGet("search")]
+        [HttpGet("searchByParamT")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<AllModels>> SearchMovie([FromQuery] string title)
@@ -58,7 +58,20 @@ namespace Movie_API.Controllers
             return Ok(searchedMovie);
         }
 
+        [HttpGet("searchByParamS")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<SearchModel>> SearchMovieDetail([FromQuery] string title)
+        {
+            if (string.IsNullOrEmpty(title))
+            {
+                return BadRequest();
+            }
+            var searchMovieCollections = await _movieService.SearchMovieDetailAsync<SearchModel>(title);
+            return Ok(searchMovieCollections);  
 
+        }
+            
 
     }
 }
