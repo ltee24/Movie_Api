@@ -67,9 +67,14 @@ namespace Movie_API.Controllers
             {
                 return BadRequest();
             }
-            var searchMovieCollections = await _movieService.SearchMovieDetailAsync<SearchModel>(title);
-            return Ok(searchMovieCollections);  
+            SearchModel movieCollections = null;
+            if (await _movieDetail.GetAsync(u=>u.Title.ToLower() == title.ToLower()) == null)
+            {
+                 movieCollections = await _movieService.SearchMovieDetailAsync<SearchModel>(title);
+                
 
+            }
+            return Ok(movieCollections);
         }
             
 
